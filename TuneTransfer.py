@@ -9,7 +9,7 @@ import youtube_dl
 API_KEY = [APIKEY]
 PLAYLIST_ID = "PL5Y2tGfke7b64Qa1OR5l26a8dgXx4tWUg"
 DOWNLOAD_DIR_NAME = "downloaded"
-SEARCH_COUNT = 5
+SEARCH_COUNT = 50
 
 api = Api(api_key=API_KEY)
 
