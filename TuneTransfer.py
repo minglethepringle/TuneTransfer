@@ -1,4 +1,5 @@
 import os
+import random
 import shutil
 import subprocess
 import webbrowser
@@ -35,11 +36,17 @@ def download_videos_mp3(video_name_list, video_id_list):
             }],
             "outtmpl": SAVE_PATH + ".", # added . to fix ydl bug of expecting extension to replace
         }
-        with youtube_dl.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([video_id_list[i]])
+        try:
+            with youtube_dl.YoutubeDL(ydl_opts) as ydl:
+                ydl.download([video_id_list[i]])
+        except Exception as e:
+            print("### ERROR: Could not download video with id", video_id_list[i])
+            continue
+        
 
 def zip_music():
-    shutil.make_archive("music", "zip", DOWNLOAD_DIR_NAME)
+    rand_id = random.randint(10000, 99999)
+    shutil.make_archive("music_{0}".format(rand_id), "zip", DOWNLOAD_DIR_NAME)
 
 def save_video_ids(video_id_list):
     id_string = "\n".join(video_id_list) + "\n"
